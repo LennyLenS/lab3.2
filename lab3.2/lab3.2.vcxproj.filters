@@ -12,16 +12,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="..\..\lab3\lab3\avl.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lab3\lab3\set.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
+    <ClInclude Include="avl.hpp" />
+    <ClInclude Include="set.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
       <UniqueIdentifier>{22dc0379-1b7f-454f-b79d-df04690045e2}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

@@ -33,9 +33,9 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
-    <ClInclude Include="..\..\lab3\lab3\avl.hpp" />
-    <ClInclude Include="..\..\lab3\lab3\set.hpp" />
+    <ClInclude Include="avl.hpp" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="set.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
