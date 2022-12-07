@@ -1,5 +1,4 @@
-#ifndef SET_HPP
-#define SET_HPP
+#pragma once
 #include <string>
 #include <vector>
 #include "avl.hpp"
@@ -15,6 +14,7 @@ public:
 	}
 
 	int add(Type k) {
+
 		if (!this->set->find(k)) {
 			this->set->add(k);
 		}
@@ -88,6 +88,3 @@ public:
 		return 0;
 	}
 };
-
-
-#endif

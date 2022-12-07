@@ -12,8 +12,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="avl.hpp" />
-    <ClInclude Include="set.hpp" />
+    <ClInclude Include="avl.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="set.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="array_sequence.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_array.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">

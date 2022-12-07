@@ -33,7 +33,9 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClInclude Include="array_sequence.hpp" />
     <ClInclude Include="avl.hpp" />
+    <ClInclude Include="dynamic_array.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="set.hpp" />
   </ItemGroup>
