@@ -14,15 +14,10 @@ public:
 	}
 
 	int add(Type k) {
-
 		if (!this->set->find(k)) {
 			this->set->add(k);
 		}
 		return 0;
-	}
-	
-	bool find(Type k) {
-		return this->set->find(k);
 	}
 
 	int delet(Type k) {
@@ -30,29 +25,25 @@ public:
 		return 0;
 	}
 
-	int map(Type(*f)(Type)) {
-		this->set->map(f);
+	int update(Type k) {
+		Type buf = this->set->get(k);
+		buf += k;
+		this->set->delet(k);
+		this->set->add(buf);
 		return 0;
 	}
 
-	int reduce(Type(*f)(Type, Type)) {
-		return this->set->reduce(f);
+	bool find(Type k) {
+		return this->set->find(k);
 	}
 
-	Set<Type>* where(bool(*f)(Type)) {
-		Set<Type>* n_set = new Set<Type>;
-		n_set->set->where(f);
-		return n_set;
-	}
-
-	int Print2() {
+	int Print() {
 		this->set->Print2();
 		return 0;
 	}
 
-	std::string Print() {
-		return this->set->Print();
-	}
+
+
 
 	int sum(Set<Type>* a) {
 		std::vector<Type> val = a->set->getelement();
@@ -87,4 +78,5 @@ public:
 		this->set = new_tree;
 		return 0;
 	}
+
 };

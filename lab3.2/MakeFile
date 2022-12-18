@@ -1,0 +1,14 @@
+CC = g++
+CFLAGS = -Wall -g
+
+all: main clean
+
+main: main.o
+	$(CC) $(CFLAGS) main.o -o main
+
+main.o: main.cpp array_sequence.hpp dynamic_array.hpp Sequence.hpp  set.hpp avl.hpp
+	$(CC) -c main.cpp -o main.o
+
+
+clean:
+	del *.o

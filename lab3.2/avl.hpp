@@ -11,7 +11,7 @@ protected:
 		unsigned char height;
 		node* left;
 		node* right;
-		node(int k) { 
+		node(Type k) { 
 			key = k; 
 			left = right = 0; 
 			height = 1; 
@@ -41,15 +41,14 @@ protected:
 		p->height = (hl > hr ? hl : hr) + 1;
 	}
 
-	node* rotateright(node* p) // right turn around p
-	{
+	node* rotateright(node* p) {
 		node* q = p->left;
 		p->left = q->right;
 		q->right = p;
 		fixheight(p);
 		fixheight(q);
 		return q;
-	}
+	}   // right turn around p
 
 	node* rotateleft(node* q) // left turn around p
 	{
@@ -123,6 +122,8 @@ protected:
 		return balance(p);
 	}
 
+
+
 	node* nodefind(node* p, Type k) {
 		if (p == nullptr) {
 			return nullptr;
@@ -138,14 +139,6 @@ protected:
 		}
 	}
 
-	std::string PrintToStringLRR(node* p) {
-		if (p == nullptr) {
-			return "null";
-		}
-		std::string res = " (" + PrintToStringLRR(p->left) + ") " + std::to_string(p->key) + " (" + PrintToStringLRR(p->right) + ") ";
-		return res;
-	}
-
 	void print_Tree(node* p, int level)
 	{
 		if (p)
@@ -157,60 +150,20 @@ protected:
 		}
 	}
 
-	bool nodefindsubtree(node* p, node* q) {
-		if (p == nullptr && q == nullptr) {
-			return true;
-		}
-		if ((p == nullptr && q != nullptr) || (p != nullptr && q == nullptr)) {
-			return false;
-		}
-		if (p->key != q->key) {
-			return false;
-		}
-		return nodefindsubtree(p->left, q->left) && nodefindsubtree(q->right, p->right);
-	}
-
-	node* nodebuildsubtree(node* p) {
+	int nodeget(Type k, node* p, Type &ans) {
 		if (p == nullptr) {
-			return p;
+			return 1;
 		}
-		node* new_element = new node(p->key);
-		new_element->left = nodebuildsubtree(p->left);
-		new_element->right = nodebuildsubtree(p->right);
-		return new_element;
-	}
-
-	int nodemap(int(*f)(int), node* p) {
-		if (p == nullptr) {
+		if (p->key == k) {
+			ans = p->key;
 			return 0;
 		}
-		p->key = f(p->key);
-		nodemap(f, p->left);
-		nodemap(f, p->right);
+		nodeupdate(k, p->left);
+		nodeupdate(k, p->right);
 		return 0;
 	}
 
-	int nodereduce(Type(*f)(Type, Type), node* p) {
-		if (p == nullptr) {
-			return 0;
-		}
-		Type a = nodereduce(f, p->left) + nodereduce(f, p->right);
-		return f(a, p->key);
-	}
-
-	int nodewhere(bool(*f)(Type), AVL<Type>* n_tree, node* p) {
-		if (p == nullptr) {
-			return 0;
-		}
-		if (f(p->key)) {
-			n_tree->add(p->key);
-		}
-		nodewhere(f, n_tree, p->left);
-		nodewhere(f, n_tree, p->right);
-		return 0;
-	}
-
-	int nodegetelement(std::vector<Type>* vec, node* p) {
+	int nodegetelements(std::vector<Type>* vec, node* p) {
 		if (p == nullptr) {
 			return 0;
 		}
@@ -219,24 +172,10 @@ protected:
 		nodegetelement(vec, p->right);
 		return 0;
 	}
+
 public:
 	AVL() {
 		root = nullptr;
-	}
-
-	int print(node* p) {
-		if (p == nullptr) {
-			return 0;
-		}
-		print(p->left);
-		std::cout << p->value << " ";
-		print(p->right);
-		return 0;
-	}
-
-	std::string Print() {
-		std::string s = PrintToStringLRR(this->root);
-		return s;
 	}
 
 	int add(Type k) {
@@ -258,43 +197,27 @@ public:
 		}
 	}
 
-	void Print2() {
+	void Print() {
 		print_Tree(this->root, 0);
 	}
 
-	bool findsubtree(AVL<Type>* q) {
-		return nodefindsubtree(nodefind(this->root, q->root->key), q->root);
+
+	Type get(Type k) {
+		if (find(k)) {
+			node ans;
+			nodeget(k, this->root, ans);
+			return ans;
+		}
+		else {
+			return add(k);
+		}
 	}
 
-	AVL<Type>* buildsubtree(Type k) {
-		node* p = nodefind(this->root, k);
-		AVL<Type>* new_tree = new AVL<Type>;
-		new_tree->root = nodebuildsubtree(p);
-		return new_tree;
-	}
-
-
-	int map(Type(*f)(Type)){
-		nodemap(f, this->root);
-		return 0;
-	}
-
-	int reduce(Type(*f)(Type, Type)) {
-		return nodereduce(f, this->root);
-	}
-
-	AVL<Type>* where(bool(*f)(Type)) {
-		AVL<Type>* new_tree = new AVL<Type>;
-		nodewhere(f, new_tree, this->root);
-		return new_tree;
-	}
-
-	std::vector<Type> getelement() {
+	std::vector<Type> getelements() {
 		std::vector<Type> vec;
-		nodegetelement(&vec, this->root);
+		nodegetelements(&vec, this->root);
 		return vec;
 	}
 };
-
 
 #endif

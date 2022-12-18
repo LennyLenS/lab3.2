@@ -36,7 +36,9 @@
     <ClInclude Include="array_sequence.hpp" />
     <ClInclude Include="avl.hpp" />
     <ClInclude Include="dynamic_array.hpp" />
+    <ClInclude Include="Pair.hpp" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Sequence.hpp" />
     <ClInclude Include="set.hpp" />
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,12 @@
     <ClInclude Include="dynamic_array.hpp">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="Sequence.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Pair.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
