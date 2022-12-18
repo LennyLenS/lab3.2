@@ -7,9 +7,7 @@ public:
 	T2 value;
 	Pair(T1 a, T2 b) : key(a), value(b) {
 	}
-	Pair(T1 a) : Pair(a, NULL) {
-	}
-	Pair() : Pair(NULL, NULL) {
+	Pair() {
 	}
 
 	Pair<T1, T2>& operator = (Pair<T1, T2> a) {
@@ -43,4 +41,6 @@ bool operator == (Pair<T1, T2>& a, Pair<T1, T2>& b) {
 template <class T1, class T2>
 std::ostream& operator<< (std::ostream& out, Pair<T1, T2>& a){
 	out << "(" << a.key << ", " << a.value << ")";
+
+	return out;
 }

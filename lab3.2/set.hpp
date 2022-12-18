@@ -26,8 +26,9 @@ public:
 	}
 
 	int update(Type k) {
-		Type buf = this->set->get(k);
-		buf += k;
+		Type buf;
+		this->set->get(k, buf);
+		buf = buf + k;
 		this->set->delet(k);
 		this->set->add(buf);
 		return 0;
@@ -38,7 +39,7 @@ public:
 	}
 
 	int Print() {
-		this->set->Print2();
+		this->set->Print();
 		return 0;
 	}
 

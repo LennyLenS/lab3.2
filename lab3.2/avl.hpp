@@ -1,6 +1,7 @@
 #ifndef AVL_HPP
 #define AVL_HPP
 #include <string>
+#include <typeinfo> 
 
 template<typename Type>
 class AVL {
@@ -158,8 +159,8 @@ protected:
 			ans = p->key;
 			return 0;
 		}
-		nodeupdate(k, p->left);
-		nodeupdate(k, p->right);
+		nodeget(k, p->left, ans);
+		nodeget(k, p->right, ans);
 		return 0;
 	}
 
@@ -202,14 +203,15 @@ public:
 	}
 
 
-	Type get(Type k) {
+	int get(Type k, Type &ret) {
 		if (find(k)) {
-			node ans;
+			Type ans;
 			nodeget(k, this->root, ans);
-			return ans;
+			ret = ans;
+			return 0;
 		}
 		else {
-			return add(k);
+			return 1;
 		}
 	}
 

@@ -10,7 +10,7 @@
 #include "array_sequence.hpp"
 
 #include "Pair.hpp"
-#include "avl.hpp"
+#include "set.hpp"
 
 using namespace std;
 
@@ -46,15 +46,23 @@ int main() {
 	queue<parametrs> IO_files, requests;
 	std::mutex requests_mutex;
 	std::mutex IO_files_mutex;
-	AVL<int> tree1;
 
-	AVL<Pair<int, int> > tree;
+	Set<Pair<int, int> > iset;
+	Pair<int, int> b;
 	for (int i = 0; i < 5; ++i) {
 		Pair<int, int> a(rand(), rand());
-		tree.add(a);
+		iset.add(a);
+		b = a;
 	}
 
-	tree.Print();
+	iset.Print();
+
+	b.value *= 2;
+
+	iset.update(b);
+	cout << "\n";
+
+	iset.Print();
 
 	thread console([&]() {
 		
