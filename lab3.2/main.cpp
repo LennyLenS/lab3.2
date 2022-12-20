@@ -56,7 +56,6 @@ int main() {
 	}
 
 	iset.Print();
-
 	b.value *= 2;
 
 	iset.update(b);
@@ -64,6 +63,11 @@ int main() {
 
 	iset.Print();
 
+	ArraySequence<Pair<int, int> > vec = iset.getelement();
+	for (int i = 0; i < vec.GetLength(); ++i) {
+		Pair<int, int> b = vec.Get(i);
+		cout << b << " ";
+	}
 	thread console([&]() {
 		
 	});

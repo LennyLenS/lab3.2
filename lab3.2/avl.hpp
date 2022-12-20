@@ -2,6 +2,7 @@
 #define AVL_HPP
 #include <string>
 #include <typeinfo> 
+#include "array_sequence.hpp"
 
 template<typename Type>
 class AVL {
@@ -164,13 +165,13 @@ protected:
 		return 0;
 	}
 
-	int nodegetelements(std::vector<Type>* vec, node* p) {
+	int nodegetelements(ArraySequence<Type>* vec, node* p) {
 		if (p == nullptr) {
 			return 0;
 		}
-		vec->push_back(p->key);
-		nodegetelement(vec, p->left);
-		nodegetelement(vec, p->right);
+		nodegetelements(vec, p->left);
+		vec->Append(p->key);
+		nodegetelements(vec, p->right);
 		return 0;
 	}
 
@@ -215,8 +216,8 @@ public:
 		}
 	}
 
-	std::vector<Type> getelements() {
-		std::vector<Type> vec;
+	ArraySequence<Type> getelements() {
+		ArraySequence<Type> vec;
 		nodegetelements(&vec, this->root);
 		return vec;
 	}

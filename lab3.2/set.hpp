@@ -43,6 +43,10 @@ public:
 		return 0;
 	}
 
+	ArraySequence<Type> getelement() {
+		return this->set->getelements();
+	}
+	
 
 
 
