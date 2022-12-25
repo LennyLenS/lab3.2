@@ -14,6 +14,7 @@ public:
 	}
 
 	int add(Type k) {
+
 		if (!this->set->find(k)) {
 			this->set->add(k);
 		}
@@ -26,6 +27,7 @@ public:
 	}
 
 	int update(Type k) {
+
 		Type buf;
 		this->set->get(k, buf);
 		buf = buf + k;
@@ -35,7 +37,8 @@ public:
 	}
 
 	bool find(Type k) {
-		return this->set->find(k);
+		std::cout << k << "\n";
+		return true;
 	}
 
 	int Print() {
@@ -43,7 +46,7 @@ public:
 		return 0;
 	}
 
-	ArraySequence<Type> getelement() {
+	ListSequence<Type> getelement() {
 		return this->set->getelements();
 	}
 	

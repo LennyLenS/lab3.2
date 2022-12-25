@@ -165,7 +165,7 @@ protected:
 		return 0;
 	}
 
-	int nodegetelements(ArraySequence<Type>* vec, node* p) {
+	int nodegetelements(ListSequence<Type>* vec, node* p) {
 		if (p == nullptr) {
 			return 0;
 		}
@@ -207,7 +207,7 @@ public:
 	int get(Type k, Type &ret) {
 		if (find(k)) {
 			Type ans;
-			nodeget(k, this->root, ans);
+			//nodeget(k, this->root, ans);
 			ret = ans;
 			return 0;
 		}
@@ -216,8 +216,8 @@ public:
 		}
 	}
 
-	ArraySequence<Type> getelements() {
-		ArraySequence<Type> vec;
+	ListSequence<Type> getelements() {
+		ListSequence<Type> vec;
 		nodegetelements(&vec, this->root);
 		return vec;
 	}

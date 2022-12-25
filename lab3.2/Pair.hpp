@@ -5,7 +5,9 @@ class Pair {
 public:
 	T1 key;
 	T2 value;
-	Pair(T1 a, T2 b) : key(a), value(b) {
+	Pair(T1 a, T2 b){
+		key = a;
+		value = b;
 	}
 	Pair() {
 	}
@@ -14,6 +16,11 @@ public:
 		this->key = a.key;
 		this->value = a.value;
 		return *this;
+	}
+
+	Pair(const Pair<T1, T2> &a) {
+		this->key = a.key;
+		this->value = a.value;
 	}
 };
 

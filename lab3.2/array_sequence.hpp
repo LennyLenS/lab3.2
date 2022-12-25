@@ -37,6 +37,26 @@ public:
 	~ArraySequence() {
 		delete this->arr;
 	}
+
+	ArraySequence<Type>& operator= (ArraySequence<Type>& a) {
+		for (int i = 0; i < a.GetLength(); ++i) {
+			this->Append(a.Get(i));
+		}
+		return *this;
+	}
+
+	ArraySequence<Type>& operator= (const ArraySequence<Type>& a) {
+		for (int i = 0; i < a.GetLength(); ++i) {
+			this->Append(a.Get(i));
+		}
+		return *this;
+	}
+
+	ArraySequence(const ArraySequence<Type>& a) {
+		for (int i = 0; i < a.GetLength(); ++i) {
+			this->Append(a.Get(i));
+		}
+	}
 };
 
 
@@ -151,9 +171,26 @@ ArraySequence<Type>* ArraySequence<Type>::Concat(Sequence<Type>* list) {
 
 //operators
 
-template<typename Type>
-Type& ArraySequence<Type>::operator[] (int index) {
-	return this->arr[index];
+
+template <class Type>
+ArraySequence<Type> operator + (ArraySequence<Type>& a, ArraySequence<Type>& b) {
+	ArraySequence<Type> buf;
+	for (int i = 0; i < a.GetLength(); ++i) {
+		buf.Append(a.Get(i));
+	}
+	for (int i = 0; i < b.GetLength(); ++i) {
+		buf.Append(b.Get(i));
+	}
+	return buf;
 }
 
+template <class Type>
+std::ostream& operator<< (std::ostream& out, ArraySequence<Type>& a) {
+	out << "[";
+	for (int i = 0; i < a.GetLength(); ++i) {
+		out << " " << a.Get(i);
+	}
+	out << "]";
+	return out;
+}
 #endif

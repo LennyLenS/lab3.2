@@ -4,9 +4,9 @@ CFLAGS = -Wall -g
 all: main clean
 
 main: main.o
-	$(CC) $(CFLAGS) main.o -o main
+	$(CC) $(CFLAGS) main.o -o lab3.2
 
-main.o: main.cpp array_sequence.hpp dynamic_array.hpp Sequence.hpp  set.hpp avl.hpp
+main.o: main.cpp
 	$(CC) -c main.cpp -o main.o
 
 

@@ -11,7 +11,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
     <ClInclude Include="avl.hpp">
       <Filter>src</Filter>
     </ClInclude>
@@ -28,6 +27,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Pair.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="linked_list.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="list_sequence.hpp">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
