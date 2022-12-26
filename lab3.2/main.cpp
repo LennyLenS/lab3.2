@@ -1,3 +1,4 @@
+#include "pch.cpp"
 #include <iostream>
 #include <fstream>
 #include <random>
@@ -282,7 +283,7 @@ int Input_file(parametrs& buf) {
 
 int Output_file(Pair< ArraySequence<Pair<string, ArraySequence<int> > >, string> &a) {
 	int error = 0;
-	std::ofstream out(a.value, std::ios::app); // окрываем файл для записи
+	std::ofstream out(a.value); // окрываем файл для записи
 	if (out.is_open())
 	{
 		for (int i = 0; i < a.key.GetLength(); ++i) {
@@ -417,10 +418,6 @@ int main() {
 				if (buf.out_file) {
 					O_files_mutex.lock();
 					Pair< ArraySequence<Pair<string, ArraySequence<int> > >, string> a(ans, buf.out_file_name);
-					for (int i = 0; i < ans.GetLength(); ++i) {
-						Pair<string, ArraySequence<int> > b = ans.Get(i);
-						cout << "Word " << b.key << " was found in: " << b.value << "\n";
-					}
 					O_files.push(a);
 					O_files_mutex.unlock();
 				}
@@ -436,7 +433,7 @@ int main() {
 		} while (!quit);
 	});
 
-	/*thread calc2([&]() {
+	thread calc2([&]() {
 		bool quit = false;
 		do {
 			parametrs buf;
@@ -467,12 +464,12 @@ int main() {
 	} while (!quit);
 	});
 
-	*/
+
 	console.join();
 	Input_files.join();
 	Output_files.join();
 	calc1.join();
-	//calc2.join();
+	calc2.join();
 
 	return 0;
 }

@@ -55,8 +55,8 @@ public:
 	}
 
 	ArraySequence(const ArraySequence<Type>& a) {
+		this->arr = new DynamicArray<Type>();
 		for (int i = 0; i < a.GetLength(); ++i) {
-			this->arr = new DynamicArray<Type>();
 			this->Append(a.Get(i));
 		}
 	}
