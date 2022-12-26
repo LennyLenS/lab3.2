@@ -128,7 +128,7 @@ template <class Type>
 std::ostream& operator<< (std::ostream& out, ListSequence<Type>& a) {
 	out << "[";
 	for (int i = 0; i < a.GetLength(); ++i) {
-		out << " " << a.Get(i);
+		out << a.Get(i) << ", ";
 	}
 	out << "]";
 	return out;

@@ -39,6 +39,8 @@ public:
 	}
 
 	ArraySequence<Type>& operator= (ArraySequence<Type>& a) {
+		delete arr;
+		this->arr = new DynamicArray<Type>();
 		for (int i = 0; i < a.GetLength(); ++i) {
 			this->Append(a.Get(i));
 		}
@@ -54,6 +56,7 @@ public:
 
 	ArraySequence(const ArraySequence<Type>& a) {
 		for (int i = 0; i < a.GetLength(); ++i) {
+			this->arr = new DynamicArray<Type>();
 			this->Append(a.Get(i));
 		}
 	}
@@ -186,11 +189,12 @@ ArraySequence<Type> operator + (ArraySequence<Type>& a, ArraySequence<Type>& b) 
 
 template <class Type>
 std::ostream& operator<< (std::ostream& out, ArraySequence<Type>& a) {
-	out << "[";
 	for (int i = 0; i < a.GetLength(); ++i) {
-		out << " " << a.Get(i);
+		out << a.Get(i);
+		if (i != a.GetLength() - 1) {
+			out << " ";
+		}
 	}
-	out << "]";
 	return out;
 }
 #endif

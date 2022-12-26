@@ -81,7 +81,7 @@ void DynamicArray<Type>::Set(int index, Type value) {
 	if (index < 0 || index >= size) {
 		//throw out_of_range("Out of range");
 	}
-	memcpy(this->arr + index, &value, sizeof(Type));
+	this->arr[index] = value;
 }
 
 template<typename Type>
@@ -90,8 +90,11 @@ void DynamicArray<Type>::Resize(int newSize) {
 		//throw invalid_argument("Invalid argument");
 	}
 	Type* new_arr = new Type[newSize];
-	if(this->size > 0)
-		memcpy(new_arr, this->arr, newSize * sizeof(Type));
+	if (this->size > 0) {
+		for (int i = 0; i < this->size; ++i) {
+			new_arr[i] = this->arr[i];
+		}
+	}
 	delete[] this->arr;
 	this->arr = new_arr;
 	this->size = newSize;
