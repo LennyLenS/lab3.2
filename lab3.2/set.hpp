@@ -1,10 +1,9 @@
 #pragma once
 #include <string>
-#include <vector>
 #include "avl.hpp"
-
+#include "main_container.hpp"
 template<typename Type>
-class Set {
+class Set: public Main_container<Type> {
 protected:
 	AVL<Type>* set;
 
@@ -13,7 +12,7 @@ public:
 		set = new AVL<Type>;
 	}
 
-	int add(Type k) {
+	int add(Type k) override {
 
 		if (!this->set->find(k)) {
 			this->set->add(k);
@@ -21,71 +20,34 @@ public:
 		return 0;
 	}
 
-	int delet(Type k) {
+	int delet(Type k) override {
 		this->set->delet(k);
 		return 0;
 	}
 
-	int update(Type k) {
+	int update(Type k, int q = 1) override{
 		this->set->delet(k);
 		this->set->add(k);
 		
 		return 0;
 	}
 
-	bool find(Type k) {
+	bool find(Type k) override {
 		return this->set->find(k);
 	}
 
-	int get(Type k, Type &buf) {
+	int get(Type k, Type &buf) override {
 		this->set->get(k, buf);
 		return 0; 
 	}
 
-	int Print() {
+	int Print() override {
 		this->set->Print();
 		return 0;
 	}
 
-	ArraySequence<Type> getelement() {
+	ArraySequence<Type> getelement() override {
 		return this->set->getelements(); 
-	}
-	
-
-
-
-	int sum(Set<Type>* a) {
-		std::vector<Type> val = a->set->getelement();
-		for (int i = 0; i < val.size(); ++i) {
-			if (!this->set->find(val[i])) {
-				this->set->add(val[i]);
-			}
-		}
-		return 0;
-	}
-
-	int Intersection(Set<Type>* a) {
-		std::vector<Type> val = a->set->getelement();
-		AVL<Type>* new_tree = new AVL<Type>;
-		for (int i = 0; i < val.size(); ++i) {
-			if (this->set->find(val[i])) {
-				new_tree->add(val[i]);
-			}
-		}
-		this->set = new_tree;
-		return 0;
-	}
-
-	int Subtraction(Set<Type>* a) {
-		std::vector<Type> val = this->set->getelement();
-		AVL<Type>* new_tree = new AVL<Type>;
-		for (int i = 0; i < val.size(); ++i) {
-			if (!(a->find(val[i]))) {
-				new_tree->add(val[i]);
-			}
-		}
-		this->set = new_tree;
-		return 0;
 	}
 
 };

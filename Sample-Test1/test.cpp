@@ -133,5 +133,10 @@ TEST(ListSequenceTest, LS_Set2) {
 }
 
 TEST(AVLTEST, AVL_1) {
-
+	AVL<int> avl;
+	avl.add(4);
+	avl.add(6);
+	avl.add(2);
+	ArraySequence<int> ans = avl.getelements();
+	ASSERT_EQ(ans.GetLength(), 3);
 }

@@ -1,4 +1,3 @@
-#include "pch.cpp"
 #include <iostream>
 #include <fstream>
 #include <random>
@@ -12,6 +11,7 @@
 #include "list_sequence.hpp"
 #include "Pair.hpp"
 #include "set.hpp"
+#include "sorted_sequence.hpp"
 
 using namespace std;
 

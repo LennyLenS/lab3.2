@@ -33,6 +33,12 @@
     <ClInclude Include="list_sequence.hpp">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="sorted_sequence.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="main_container.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
