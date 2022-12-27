@@ -17,6 +17,12 @@ public:
 
 	virtual int Print() = 0;
 
+	virtual int get_length() = 0;
+
+	virtual int is_empty() = 0;
+
+	virtual Type get_index(int index) = 0;
+
 	virtual ArraySequence<Type> getelement() = 0;
 
 };

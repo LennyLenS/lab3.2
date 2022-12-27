@@ -48,7 +48,10 @@ public:
 	}
 
 	int get(Type k, Type& buf) override{
-		this->sorted_sequence->get(k, buf);
+		Pair<Type, int> k1(k, 1);
+		Pair<Type, int> ans(k, 1);
+		this->sorted_sequence->get(k1, ans);
+		buf = ans.key;
 		return 0;
 	}
 
@@ -57,6 +60,24 @@ public:
 		return 0;
 	}
 
+	int get_length() override {
+		ArraySequence<Type> buf = this->getelement();
+		return buf.GetLength();
+	}
+
+	int is_empty() override {
+		if (this->get_length() == 0) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+
+	Type get_index(int index) override {
+		ArraySequence<Type> buf = this->getelement();
+		return buf.Get(index);
+	}
 	ArraySequence<Type> getelement() override{
 		ArraySequence<Pair<Type, int> > buf = this->sorted_sequence->getelements();
 		ArraySequence <Type> ans;

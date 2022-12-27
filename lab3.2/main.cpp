@@ -133,14 +133,14 @@ string del_spaces(string s) {
 	return new_s;
 }
 
-int add_to_set(int &num_page, int &max_quant, int &cur_num_words, int size, string s, Set<Pair<string, ArraySequence<int> > >& iset) {
+int add_to_set(int &num_page, int &max_quant, int &cur_num_words, int size, string s, Main_container<Pair<string, ArraySequence<int> > >* iset) {
 	if (cur_num_words + size <= max_quant) {
 		ArraySequence<int> arr;
 		arr.Append(num_page);
 		Pair<string, ArraySequence<int> > buf(s, arr);
-		if (iset.find(buf)) {
+		if (iset->find(buf)) {
 			Pair<string, ArraySequence<int> > buf2;
-			iset.get(buf, buf2);
+			iset->get(buf, buf2);
 
 			for (int i = 0; i < buf.value.GetLength(); ++i) {
 				bool flag = false;
@@ -156,11 +156,11 @@ int add_to_set(int &num_page, int &max_quant, int &cur_num_words, int size, stri
 				}
 			}
 
-			iset.update(buf2); 
+			iset->update(buf2); 
 		}
 		else {
 			//cout << "add_to_set: " << buf << endl;
-			iset.add(buf);
+			iset->add(buf);
 		}
 
 		cur_num_words += size;
@@ -176,7 +176,13 @@ int add_to_set(int &num_page, int &max_quant, int &cur_num_words, int size, stri
 int run(parametrs buf, ArraySequence<Pair<string, ArraySequence<int> > > &ans1) {
 	bool error = false;
 	ListSequence<string> vec = split(del_spaces(buf.data));
-	Set<Pair<string, ArraySequence<int> > > iset;
+	Main_container<Pair<string, ArraySequence<int> > >* icon = nullptr;
+	if (buf.iset) {
+		icon = new Set<Pair<string, ArraySequence<int> > >();
+	}
+	if (buf.sort_seq) {
+		icon = new Sorted_sequence<Pair<string, ArraySequence<int> > >();
+	}
 	if (buf.words) {
 		int num_page = 1;
 		int cur_num_words = 0;
@@ -184,15 +190,15 @@ int run(parametrs buf, ArraySequence<Pair<string, ArraySequence<int> > > &ans1) 
 		while(i < vec.GetLength()){
 			if (num_page == 1) {
 				int max_words = 0.5 * buf.quant;
-				i += add_to_set(num_page, max_words, cur_num_words, 1, vec.Get(i), iset);
+				i += add_to_set(num_page, max_words, cur_num_words, 1, vec.Get(i), icon);
 			}
 			else if (num_page % 10 == 0) {
 				int max_words = 0.75 * buf.quant;
-				i += add_to_set(num_page, max_words, cur_num_words, 1, vec.Get(i), iset);
+				i += add_to_set(num_page, max_words, cur_num_words, 1, vec.Get(i), icon);
 			}
 			else {
 				int max_words = buf.quant;
-				i += add_to_set(num_page, max_words, cur_num_words, 1, vec.Get(i), iset);
+				i += add_to_set(num_page, max_words, cur_num_words, 1, vec.Get(i), icon);
 			}
 		}		
 	}
@@ -212,7 +218,7 @@ int run(parametrs buf, ArraySequence<Pair<string, ArraySequence<int> > > &ans1) 
 				if (cur_num_letter != 0) {
 					size += 1;
 				}
-				i += add_to_set(num_page, max_letter, cur_num_letter, size, vec.Get(i), iset);
+				i += add_to_set(num_page, max_letter, cur_num_letter, size, vec.Get(i), icon);
 			}
 			else if (num_page % 10 == 0) {
 				max_letter = 0.75 * buf.quant;
@@ -220,7 +226,7 @@ int run(parametrs buf, ArraySequence<Pair<string, ArraySequence<int> > > &ans1) 
 				if (cur_num_letter != 0) {
 					size += 1;
 				}
-				i += add_to_set(num_page, max_letter, cur_num_letter, size, vec.Get(i), iset);
+				i += add_to_set(num_page, max_letter, cur_num_letter, size, vec.Get(i), icon);
 			}
 			else {
 				max_letter = buf.quant;
@@ -228,7 +234,7 @@ int run(parametrs buf, ArraySequence<Pair<string, ArraySequence<int> > > &ans1) 
 				if (cur_num_letter != 0) {
 					size += 1;
 				}
-				i += add_to_set(num_page, max_letter, cur_num_letter, size, vec.Get(i), iset);
+				i += add_to_set(num_page, max_letter, cur_num_letter, size, vec.Get(i), icon);
 			}
 		}
 	}
@@ -236,14 +242,14 @@ int run(parametrs buf, ArraySequence<Pair<string, ArraySequence<int> > > &ans1) 
 		cout << "Impossible to split words\n";
 	}
 	else if(!buf.out_file){
-		ArraySequence<Pair<string, ArraySequence<int> > > ans = iset.getelement();
+		ArraySequence<Pair<string, ArraySequence<int> > > ans = icon->getelement();
 		for (int i = 0; i < ans.GetLength(); ++i) {
 			Pair<string, ArraySequence<int> > b = ans.Get(i);
 			cout << "Word " << b.key << " was found in: " << b.value << "\n";
 		}
 	}
 	else {
-		ArraySequence<Pair<string, ArraySequence<int> > > ans = iset.getelement();
+		ArraySequence<Pair<string, ArraySequence<int> > > ans = icon->getelement();
 		ans1 = ans;
 	}
 	return 0;

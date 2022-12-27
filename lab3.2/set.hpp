@@ -46,6 +46,25 @@ public:
 		return 0;
 	}
 
+	int get_length() override{
+		ArraySequence<Type> buf = this->set->getelements();
+		return buf.GetLength();
+	}
+
+	int is_empty() override{
+		if (this->get_length() == 0) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+
+	Type get_index(int index) override{
+		ArraySequence<Type> buf = this->set->getelements();
+		return buf.Get(index);
+	}
+
 	ArraySequence<Type> getelement() override {
 		return this->set->getelements(); 
 	}
