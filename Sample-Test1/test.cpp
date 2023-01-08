@@ -3,6 +3,7 @@
 #include "../lab3.2/list_sequence.hpp"
 #include "../lab3.2/avl.hpp"
 #include "../lab3.2/set.hpp"
+#include "../lab3.2//sorted_sequence.hpp"
 #include "../lab3.2/Pair.hpp"
 
 
@@ -232,6 +233,7 @@ TEST(SetTEST, Set1) {
 		ASSERT_EQ(ans.Get(i), buf.Get(i));
 	}
 }
+
 TEST(SetTEST, Set2) {
 	Set<int> a;
 	a.add(4);
@@ -251,6 +253,7 @@ TEST(SetTEST, Set2) {
 		ASSERT_EQ(ans.Get(i), buf.Get(i));
 	}
 }
+
 TEST(SetTEST, Set3) {
 	Set<int> a;
 	a.add(4);
@@ -268,3 +271,57 @@ TEST(SetTEST, Set3) {
 	}
 }
 
+TEST(SSTEST, SS1) {
+	Sorted_sequence<int> a;
+	a.add(4);
+	a.add(1);
+	a.add(123);
+	a.add(444);
+	ArraySequence<int> ans = a.getelement();
+	ArraySequence<int> buf;
+	buf.Append(1);
+	buf.Append(4);
+	buf.Append(123);
+	buf.Append(444);
+	for (int i = 0; i < 4; ++i) {
+		ASSERT_EQ(ans.Get(i), buf.Get(i));
+	}
+}
+
+TEST(SSTEST, SS2) {
+	Sorted_sequence<int> a;
+	a.add(4);
+	a.add(1);
+	a.add(123);
+	a.add(444);
+	a.add(3);
+	a.add(123);
+	ArraySequence<int> ans = a.getelement();
+	ArraySequence<int> buf;
+	buf.Append(1);
+	buf.Append(3);
+	buf.Append(4);
+	buf.Append(123);
+	buf.Append(123);
+	buf.Append(444);
+	for (int i = 0; i < 5; ++i) {
+		ASSERT_EQ(ans.Get(i), buf.Get(i));
+	}
+}
+
+TEST(SSTEST, SS3) {
+	Set<int> a;
+	a.add(4);
+	a.add(1);
+	a.add(123);
+	a.add(-13);
+	ArraySequence<int> ans = a.getelement();
+	ArraySequence<int> buf;
+	buf.Append(-13);
+	buf.Append(1);
+	buf.Append(4);
+	buf.Append(123);
+	for (int i = 0; i < 4; ++i) {
+		ASSERT_EQ(ans.Get(i), buf.Get(i));
+	}
+}

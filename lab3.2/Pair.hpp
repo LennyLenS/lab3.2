@@ -36,6 +36,11 @@ bool operator > (Pair<T1, T2>& a, Pair<T1, T2>& b) {
 }
 
 template <class T1, class T2>
+bool operator >= (Pair<T1, T2>& a, Pair<T1, T2>& b) {
+	return (a.key >= b.key);
+}
+
+template <class T1, class T2>
 bool operator < (Pair<T1, T2>& a, Pair<T1, T2>& b) {
 	return (a.key < b.key);
 }

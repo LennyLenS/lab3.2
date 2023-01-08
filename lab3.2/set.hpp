@@ -41,10 +41,6 @@ public:
 		return 0; 
 	}
 
-	int Print() override {
-		this->set->Print();
-		return 0;
-	}
 
 	int get_length() override{
 		ArraySequence<Type> buf = this->set->getelements();
@@ -63,6 +59,10 @@ public:
 	Type get_index(int index) override{
 		ArraySequence<Type> buf = this->set->getelements();
 		return buf.Get(index);
+	}
+
+	int bin_search(Type k) {
+		return 0;
 	}
 
 	ArraySequence<Type> getelement() override {

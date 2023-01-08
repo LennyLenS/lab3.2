@@ -141,17 +141,6 @@ protected:
 		}
 	}
 
-	void print_Tree(node* p, int level)
-	{
-		if (p)
-		{
-			print_Tree(p->left, level + 1);
-			for (int i = 0; i < level; i++) std::cout << "    ";
-			std::cout << p->key << "\n";
-			print_Tree(p->right, level + 1);
-		}
-	}
-
 	int nodeget(Type k, node* p, Type &ans) {
 		if (p == nullptr) {
 			return 1;
@@ -199,10 +188,6 @@ public:
 		}
 	}
 
-	void Print() {
-		print_Tree(this->root, 0);
-	}
-
 
 	int get(Type k, Type &ret) {
 		if (find(k)) {
@@ -216,6 +201,9 @@ public:
 		}
 	}
 
+	int bin_search() {
+		return 0;
+	}
 	ArraySequence<Type> getelements() {
 		ArraySequence<Type> vec;
 		nodegetelements(&vec, this->root);

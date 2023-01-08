@@ -1,0 +1,191 @@
+Word "Hasta was found in: 46
+Word 'cause was found in: 63
+Word 'em, was found in: 46
+Word 'posed was found in: 39
+Word (Look was found in: 15 16 32 34 73
+Word And was found in: 20 52
+Word Being was found in: 39
+Word But was found in: 11 17 27
+Word Everybody was found in: 13 14 29 31 64 65 67 69
+Word For was found in: 4
+Word Had was found in: 53
+Word I was found in: 2 9 22 24 50 53 54 59 70 72
+Word I'll was found in: 71 73
+Word I'm was found in: 6 17 23 35 36 38 49 57
+Word I'ma was found in: 45
+Word I've was found in: 22 48
+Word It was found in: 62
+Word Look was found in: 1
+Word My was found in: 16 33 72
+Word Oh, was found in: 12 28 66
+Word On was found in: 55
+Word Pack was found in: 59
+Word Pray was found in: 70 72
+Word Ready was found in: 41
+Word Spare was found in: 14 30 65 68
+Word Tell was found in: 9 26
+Word The was found in: 42 44
+Word They was found in: 46
+Word Uh, was found in: 34
+Word When was found in: 7 24
+Word Who was found in: 61
+Word With was found in: 57
+Word Your was found in: 18
+Word a was found in: 26 40 71 73
+Word about was found in: 54
+Word ain't was found in: 58
+Word allows was found in: 4
+Word an was found in: 49 55
+Word and was found in: 21 23
+Word are was found in: 7
+Word around, was found in: 5
+Word as was found in: 19
+Word astronaut was found in: 50
+Word at was found in: 63
+Word automatic was found in: 57
+Word away, was found in: 70 72
+Word back was found in: 8
+Word baddest? was found in: 62
+Word batter-batter was found in: 61
+Word be was found in: 13 15 25 29 31 39 64 66 67 69 71 73
+Word because was found in: 53
+Word been was found in: 22 48
+Word behold was found in: 6
+Word blasted was found in: 50
+Word box, was found in: 49
+Word called was found in: 22
+Word catastrophe was found in: 52
+Word cause was found in: 51
+Word don't was found in: 60 62
+Word ear was found in: 5
+Word emotions was found in: 40
+Word enemy was found in: 13 15 16 30 64 66 68 69 72
+Word enemy's was found in: 44
+Word enemy-y-y-y-y was found in: 32 33
+Word energy was found in: 45
+Word fall was found in: 20
+Word floor was found in: 43
+Word for was found in: 1 16 17 19 24 32 34 36 37 74
+Word go was found in: 41
+Word greatest was found in: 11 27
+Word ground was found in: 6
+Word had was found in: 53
+Word halls was found in: 21
+Word hate was found in: 12 28
+Word havoc was found in: 54
+Word hope was found in: 37
+Word hoping was found in: 35
+Word in was found in: 21 23 26
+Word into was found in: 43
+Word is was found in: 8 42
+Word it was found in: 23 52 53 59 70 72
+Word it's was found in: 25
+Word just was found in: 41
+Word kinda was found in: 55
+Word know was found in: 42
+Word laughter was found in: 20
+Word let was found in: 41
+Word like was found in: 25
+Word long, was found in: 42
+Word look, was found in: 35
+Word luego" was found in: 46
+Word matter was found in: 62
+Word matters was found in: 52
+Word me was found in: 36 38 42
+Word mic was found in: 26
+Word mind was found in: 4
+Word mind, was found in: 23
+Word misery was found in: 12 29 67
+Word more was found in: 53
+Word my was found in: 4 5 8 13 15 19 23 30 32 44 47 64 66 68 69
+Word names was found in: 21
+Word never was found in: 71 73
+Word no was found in: 71
+Word nobody was found in: 38
+Word not was found in: 53
+Word of was found in: 3 40
+Word off was found in: 51
+Word okay was found in: 35
+Word on was found in: 18 44 47
+Word once was found in: 11 27
+Word opposition, was found in: 55
+Word out was found in: 1 15 17 32 34 49 74
+Word outta was found in: 48
+Word p-p-posted was found in: 39
+Word pack was found in: 59
+Word panic, was found in: 60
+Word pedal was found in: 43
+Word planet was found in: 51
+Word plot was found in: 47
+Word pray was found in: 36
+Word prayin' was found in: 19
+Word praying was found in: 37
+Word precision, was found in: 57
+Word put was found in: 43
+Word quarterback was found in: 58
+Word ready was found in: 18
+Word road was found in: 42
+Word rock was found in: 51
+Word run was found in: 4
+Word sackin', was found in: 59
+Word saint was found in: 73
+Word saint, was found in: 71
+Word searching was found in: 6
+Word shape, was found in: 48
+Word shockin' was found in: 56
+Word show was found in: 24
+Word silence was found in: 3
+Word smiling was found in: 9
+Word so was found in: 42
+Word somebody was found in: 36 37
+Word sounds was found in: 3
+Word spit was found in: 26
+Word stack was found in: 22
+Word static was found in: 56
+Word staying was found in: 38
+Word stories was found in: 7
+Word swear was found in: 70 72
+Word sympathy was found in: 14 31 65 68
+Word talkin' was found in: 58
+Word tell was found in: 45
+Word that was found in: 3 7 8 22 35 37
+Word the was found in: 2 3 5 7 8 10 12 14 18 20 21 24 27 28 30 43 47 49 51 61 65 66 68
+Word they was found in: 12 28 56
+Word thinkin' was found in: 49
+Word thought was found in: 54
+Word throat was found in: 63
+Word time was found in: 24
+Word to was found in: 2 4 5 6 8 13 15 25 29 31 39 41 47 51 64 66 67 69
+Word told was found in: 7
+Word top was found in: 47
+Word trail, was found in: 44
+Word trot was found in: 47
+Word turn, was found in: 11 28
+Word turned was found in: 9
+Word unavailable was found in: 45
+Word up was found in: 2 5 18 61
+Word up, was found in: 59
+Word us was found in: 12 28
+Word waiting was found in: 23
+Word wake was found in: 2
+Word wall was found in: 19
+Word wanna was found in: 46
+Word wanted was found in: 56
+Word wants was found in: 13 15 29 31 64 66 67 69
+Word was was found in: 9
+Word way was found in: 71
+Word we was found in: 63
+Word what was found in: 25
+Word when was found in: 9
+Word whenever, was found in: 41
+Word where was found in: 38
+Word with was found in: 5
+Word words was found in: 18 25
+Word world was found in: 8
+Word wreaking was found in: 54
+Word wreck was found in: 40
+Word ya was found in: 63
+Word you was found in: 10 11 24 26 27
+Word you're was found in: 10 19 26
+Word yourself was found in: 2
+Word yourself) was found in: 16 17 33 34 74

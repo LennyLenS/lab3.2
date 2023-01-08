@@ -5,60 +5,59 @@
 #include "main_container.hpp"
 
 template<typename Type>
-class Sorted_sequence: public Main_container<Type> {
+class IDict : public Main_container<Type> {
 protected:
-	AVL<Pair<Type, int>>* sorted_sequence;
+	AVL<Pair<Type, int>>* dict;
 
 public:
-	Sorted_sequence() {
-		sorted_sequence = new AVL<Pair<Type, int> >;
+	IDict() {
+		dict = new AVL<Pair<Type, int> >;
 	}
 
 	int bin_search(Type k) {
 		return 0;
 	}
 
-	int add(Type k) override{
+	int add(Type k) override {
 		Pair<Type, int> buf(k, 1);
-		if (!this->sorted_sequence->find(buf)) {
-			this->sorted_sequence->add(buf);
+		if (!this->dict->find(buf)) {
+			this->dict->add(buf);
 		}
 		else {
 			Pair<Type, int> a;
-			this->sorted_sequence->get(buf, a);
+			this->dict->get(buf, a);
 			buf.value++;
 			update(buf.key, buf.value);
 		}
 		return 0;
 	}
 
-	int delet(Type k) override{
+	int delet(Type k) override {
 		Pair<Type, int> buf(k, 1);
-		this->sorted_sequence->delet(buf);
+		this->dict->delet(buf);
 		return 0;
 	}
 
-	int update(Type k, int q = 1) override{
+	int update(Type k, int q = 1) override {
 		Pair<Type, int> buf(k, q);
-		this->sorted_sequence->delet(buf);
-		this->sorted_sequence->add(buf);
+		this->dict->delet(buf);
+		this->dict->add(buf);
 
 		return 0;
 	}
 
-	bool find(Type k) override{
+	bool find(Type k) override {
 		Pair<Type, int> buf(k, 1);
-		return this->sorted_sequence->find(buf);
+		return this->dict->find(buf);
 	}
 
-	int get(Type k, Type& buf) override{
+	int get(Type k, Type& buf) override {
 		Pair<Type, int> k1(k, 1);
 		Pair<Type, int> ans(k, 1);
-		this->sorted_sequence->get(k1, ans);
+		this->dict->get(k1, ans);
 		buf = ans.key;
 		return 0;
 	}
-
 
 	int get_length() override {
 		ArraySequence<Type> buf = this->getelement();
@@ -78,8 +77,8 @@ public:
 		ArraySequence<Type> buf = this->getelement();
 		return buf.Get(index);
 	}
-	ArraySequence<Type> getelement() override{
-		ArraySequence<Pair<Type, int> > buf = this->sorted_sequence->getelements();
+	ArraySequence<Type> getelement() override {
+		ArraySequence<Pair<Type, int> > buf = this->dict->getelements();
 		ArraySequence <Type> ans;
 		for (int i = 0; i < buf.GetLength(); ++i) {
 			for (int j = 0; j < buf.Get(i).value; ++j) {

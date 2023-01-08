@@ -12,6 +12,8 @@
 #include "Pair.hpp"
 #include "set.hpp"
 #include "sorted_sequence.hpp"
+#include "sort_sequence2.hpp"
+#include "dictionary.hpp"
 
 using namespace std;
 
@@ -22,6 +24,7 @@ typedef struct parametrs{
 	bool run = false;
 	bool error = false;
 	bool iset = false;
+	bool dict = false;
 	bool sort_seq = false;
 	bool words = false;
 	bool letters = false;
@@ -36,7 +39,7 @@ typedef struct parametrs{
 
 parametrs parsing(string s) {
 	parametrs buf;
-	static const regex r("^(help|((run|test){1}\\s*-(iset|sortseq)\\s*(-w|-l){1}\\s*(-q)?\\s*(\\d+)?\\s*(-fi\\s*(\\S*))?\\s*(-fo\\s*(\\S*))?)|quit)$");
+	static const regex r("^(help|((run|test){1}\\s*-(iset|sortseq|dict)\\s*(-w|-l){1}\\s*(-q)?\\s*(\\d+)?\\s*(-fi\\s*(\\S*))?\\s*(-fo\\s*(\\S*))?)|quit)$");
 	smatch mat;
 	if (regex_search(s, mat, r)) {
 		/*
@@ -52,6 +55,9 @@ parametrs parsing(string s) {
 		}
 		if (s.find("sortseq") != -1) {
 			buf.sort_seq = true;
+		}
+		if (s.find("dict") != -1) {
+			buf.dict = true;
 		}
 		if (s.find("-w") != -1) {
 			buf.words = true;
@@ -115,6 +121,17 @@ ListSequence<string> split(string s) {
 	return a;
 }
 
+bool check_char(char a) {
+	string s = "!@#$%^&*()'\\/,.~-=+\"";
+	for (int i = 0; i < s.size(); ++i) {
+		if (a == s[i]) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 string del_spaces(string s) {
 	string new_s = "";
 	int a = 0;
@@ -133,15 +150,24 @@ string del_spaces(string s) {
 	return new_s;
 }
 
+string clean_str(string s) {
+	string new_s = "";
+	for (int i = 0; i < s.length(); ++i) {
+		if (check_char(s[i])) {
+			new_s += s[i];
+		}
+	}
+	return new_s;
+}
+
 int add_to_set(int &num_page, int &max_quant, int &cur_num_words, int size, string s, Main_container<Pair<string, ArraySequence<int> > >* iset) {
 	if (cur_num_words + size <= max_quant) {
 		ArraySequence<int> arr;
 		arr.Append(num_page);
-		Pair<string, ArraySequence<int> > buf(s, arr);
+		Pair<string, ArraySequence<int> > buf(clean_str(s), arr);
 		if (iset->find(buf)) {
 			Pair<string, ArraySequence<int> > buf2;
 			iset->get(buf, buf2);
-
 			for (int i = 0; i < buf.value.GetLength(); ++i) {
 				bool flag = false;
 				for (int j = 0; j < buf2.value.GetLength(); ++j) {
@@ -155,7 +181,6 @@ int add_to_set(int &num_page, int &max_quant, int &cur_num_words, int size, stri
 					buf2.value.Append(buf.value.Get(i));
 				}
 			}
-
 			iset->update(buf2); 
 		}
 		else {
@@ -174,19 +199,25 @@ int add_to_set(int &num_page, int &max_quant, int &cur_num_words, int size, stri
 }
 
 int run(parametrs buf, ArraySequence<Pair<string, ArraySequence<int> > > &ans1) {
+	std::ofstream out("output.txt");
 	bool error = false;
 	ListSequence<string> vec = split(del_spaces(buf.data));
 	Main_container<Pair<string, ArraySequence<int> > >* icon = nullptr;
+	int last_page = 0;
 	if (buf.iset) {
 		icon = new Set<Pair<string, ArraySequence<int> > >();
 	}
 	if (buf.sort_seq) {
-		icon = new Sorted_sequence<Pair<string, ArraySequence<int> > >();
+		icon = new Sorted_sequence2<Pair<string, ArraySequence<int> > >();
+	}
+	if (buf.dict) {
+		icon = new IDict<Pair<string, ArraySequence<int> > >();
 	}
 	if (buf.words) {
 		int num_page = 1;
 		int cur_num_words = 0;
 		int i = 0;
+		int k = 0;
 		while(i < vec.GetLength()){
 			if (num_page == 1) {
 				int max_words = 0.5 * buf.quant;
@@ -200,12 +231,28 @@ int run(parametrs buf, ArraySequence<Pair<string, ArraySequence<int> > > &ans1) 
 				int max_words = buf.quant;
 				i += add_to_set(num_page, max_words, cur_num_words, 1, vec.Get(i), icon);
 			}
+
+
+			if (num_page != last_page) {
+				last_page = num_page;
+				out << "\nPage: " << num_page << "\n";
+			}
+
+
+			if (k != i) {
+				if (cur_num_words != 1) {
+					out << " ";
+				}
+				out << vec.Get(i - 1);
+				k = i;
+			}
 		}		
 	}
 	if (buf.letters) {
 		int num_page = 1;
 		int cur_num_letter = 0;
 		int i = 0;
+		int k = 0;
 		while (i < vec.GetLength()){
 			if (vec.Get(i).length() > buf.quant) {
 				error = true;
@@ -236,6 +283,20 @@ int run(parametrs buf, ArraySequence<Pair<string, ArraySequence<int> > > &ans1) 
 				}
 				i += add_to_set(num_page, max_letter, cur_num_letter, size, vec.Get(i), icon);
 			}
+
+			if (num_page != last_page) {
+				last_page = num_page;
+				out << "\nPage: " << num_page << "\n";
+			}
+
+
+			if (k != i) {
+				if (cur_num_letter != 0) {
+					out << " ";
+				}
+				out << vec.Get(i - 1);
+				k = i;
+			}
 		}
 	}
 	if (error) {
@@ -252,6 +313,8 @@ int run(parametrs buf, ArraySequence<Pair<string, ArraySequence<int> > > &ans1) 
 		ArraySequence<Pair<string, ArraySequence<int> > > ans = icon->getelement();
 		ans1 = ans;
 	}
+
+	out.close();
 	return 0;
 }
 
@@ -469,7 +532,6 @@ int main() {
 			}
 	} while (!quit);
 	});
-
 
 	console.join();
 	Input_files.join();
